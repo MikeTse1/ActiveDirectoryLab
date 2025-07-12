@@ -31,8 +31,8 @@ This guide covers the steps to build a virtual lab using **Oracle VirtualBox** w
 
 ### 2. Create a Virtual Network in VirtualBox
 - Go to **File > Host Network Manager**.
-- Create a **Host-only Adapter** and enable DHCP if needed.
-- Use this adapter for VM networking.
+- For server, it neds two network adapters, using NAT Network for internet, and Internal Network for network.
+- For client, use only Internal Network for network. 
 
 ### 3. Create Two Virtual Machines
 - **VM 1: Server**
@@ -51,19 +51,18 @@ This guide covers the steps to build a virtual lab using **Oracle VirtualBox** w
 - Mount ISO and install on the server VM.
 
 ### 2. Basic Setup
-- Set a **static IP address**.
-- Rename the machine (e.g., `Server01`).
-- Join to **Workgroup** (initially).
+- Set a **static IP address** before promoting to Domain Controller 
+- Rename the machine (e.g., `Server01`, `DC`).
 
 ### 3. Install & Configure Active Directory Domain Services (AD DS)
-- Promote server to a **Domain Controller** (e.g., `example.local`).
+- Promote server to a **Domain Controller** (e.g., `example.local`or `mydomain.com`).
 - Install DNS during promotion.
 - Reboot after setup.
 
 ### 4. Active Directory Tasks
 - Create **Organizational Units (OUs)**.
-- Create new users.
-- Promote a user to **Domain Admin**.
+- Create new users, e.g. a-mtse (a = admin, m=Mike (First Name), tse = Tse (Surname).
+- Promote a user, e.g. a-mtse, to **Domain Admin**.
 - Practice:
   - Creating/deleting OUs
   - Creating/deleting users
@@ -79,7 +78,7 @@ This guide covers the steps to build a virtual lab using **Oracle VirtualBox** w
 - Create a **DHCP scope**.
 - Configure DHCP options (e.g., default gateway, DNS server).
 - Authorize DHCP server in AD.
-- Add IP address of server/router.
+- Add IP address of server/router // Configure DHCP options including default gateway (server's IP) and DNS server (server's IP).
 
 ---
 
@@ -99,12 +98,12 @@ This guide covers the steps to build a virtual lab using **Oracle VirtualBox** w
 - Download ISO from: [https://www.microsoft.com/en-gb/software-download/windows10](https://www.microsoft.com/en-gb/software-download/windows10)
 
 ### 2. Configure Networking
-- Use the same **VirtualBox network** as the server (e.g., Host-only Adapter or Internal Network).
+- Use the same **VirtualBox network** as the server (i.e. Internal Network).
 - Set to get IP from DHCP.
 
 ### 3. Join Domain
 - Right-click **This PC > Properties > Change settings**.
-- Click **Change...**, then join domain (e.g., `example.local`).
+- Click **Change...**, then join domain (e.g., `example.local` or `mydomain.com`).
 - Use domain admin credentials to authorize.
 
 ### 4. Verify
