@@ -31,7 +31,7 @@ This guide covers the steps to build a virtual lab using **Oracle VirtualBox** w
 
 ### 2. Create a Virtual Network in VirtualBox
 - Go to **File > Host Network Manager**.
-- For server, it needs two network adapters, using NAT Network for internet, and Internal Network for network.
+- For server, it needs two Network Adapters, using NAT for internet, and Internal Network for internal network.
 - For client, use only Internal Network for network. 
 
 ### 3. Create Two Virtual Machines
@@ -51,17 +51,16 @@ This guide covers the steps to build a virtual lab using **Oracle VirtualBox** w
 - Mount ISO and install on the server VM.
 
 ### 2. Basic Setup
-- Set a **static IP address** before promoting to Domain Controller 
+- Set a **IP address, subnet mask, preferred DNS server** before promoting to Domain Controller 
 - Rename the machine (e.g., `Server01`, `DC`).
 
 ### 3. Install & Configure Active Directory Domain Services (AD DS)
-- Promote server to a **Domain Controller** (e.g., `example.local`or `mydomain.com`).
-- Install DNS during promotion.
+- Promote server to a **Domain Controller** (e.g. `example.local`or `mydomain.com`).
 - Reboot after setup.
 
 ### 4. Active Directory Tasks
 - Create **Organizational Units (OUs)**.
-- Create new users, e.g. a-mtse (a = admin, m=Mike (First Name), tse = Tse (Surname).
+- Create a new user with a logon name, e.g. a-mtse (a = admin, m=Mike (First Name), tse = Tse (Surname).
 - Promote a user, e.g. a-mtse, to **Domain Admin**.
 - Practice:
   - Creating/deleting OUs
@@ -70,19 +69,19 @@ This guide covers the steps to build a virtual lab using **Oracle VirtualBox** w
   - Disabling/enabling users
 
 ### 5. Install Routing and Remote Access
-- Enable **NAT (Network Address Translation)**.
-- Add a second network adapter if needed.
+- Install **Remote Access** via Server Manager.
+- Configure/Enable **NAT (Network Address Translation)**.
 
 ### 6. Set Up DHCP Server
-- Add the **DHCP role** via Server Manager. 
-- Create a **DHCP scope** to define the IP range for clients.
+- Add the **DHCP Server** via Server Manager. 
+- Create a **Scope** at DHCP to define the IP range for clients, e.g. 172.16.0.100-200.
 - Configure essential DHCP options, including:
-  Default Gateway (typically the server or router IP).
+  Default Gateway (typically the server or router IP, e.g. 172.16.0.1).
   DNS server (usually the Domain Controller IP).
 - Authorize the DHCP server within Active Directory.
 - Verify the server/router IP settings, ensuring consistency across your DHCP scope and network configuration.
 
-
+### 7. Add 1000 users using Windows PowerShell ISE
 ---
 
 ## 🧑‍💻 Active Directory Tasks
@@ -98,16 +97,17 @@ This guide covers the steps to build a virtual lab using **Oracle VirtualBox** w
 ## 💻 Windows 10 Client Setup
 
 ### 1. Install Windows 10 in VM
-- Download ISO from: [https://www.microsoft.com/en-gb/software-download/windows10](https://www.microsoft.com/en-gb/software-download/windows10)
+- Download ISO from: [https://www.microsoft.com/en-gb/software-download/windows10](https://www.microsoft.com/en-gb/software-download/windows10), and install.
 
 ### 2. Configure Networking
 - Use the same **VirtualBox network** as the server (i.e. Internal Network).
 - Set to get IP from DHCP.
 
 ### 3. Join Domain
-- Right-click **This PC > Properties > Change settings**.
+- **Setting > Rename this PC(advanced) > Change...**.
 - Click **Change...**, then join domain (e.g., `example.local` or `mydomain.com`).
 - Use domain admin credentials to authorize.
+- Restart.
 
 ### 4. Verify
 - Log in with domain user.
