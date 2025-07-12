@@ -31,7 +31,7 @@ This guide covers the steps to build a virtual lab using **Oracle VirtualBox** w
 
 ### 2. Create a Virtual Network in VirtualBox
 - Go to **File > Host Network Manager**.
-- For server, it neds two network adapters, using NAT Network for internet, and Internal Network for network.
+- For server, it needs two network adapters, using NAT Network for internet, and Internal Network for network.
 - For client, use only Internal Network for network. 
 
 ### 3. Create Two Virtual Machines
@@ -74,11 +74,14 @@ This guide covers the steps to build a virtual lab using **Oracle VirtualBox** w
 - Add a second network adapter if needed.
 
 ### 6. Set Up DHCP Server
-- Add the **DHCP role**.
-- Create a **DHCP scope**.
-- Configure DHCP options (e.g., default gateway, DNS server).
-- Authorize DHCP server in AD.
-- Add IP address of server/router // Configure DHCP options including default gateway (server's IP) and DNS server (server's IP).
+- Add the **DHCP role** via Server Manager. 
+- Create a **DHCP scope** to define the IP range for clients.
+- Configure essential DHCP options, including:
+  Default Gateway (typically the server or router IP).
+  DNS server (usually the Domain Controller IP).
+- Authorize the DHCP server within Active Directory.
+- Verify the server/router IP settings, ensuring consistency across your DHCP scope and network configuration.
+
 
 ---
 
@@ -88,7 +91,7 @@ This guide covers the steps to build a virtual lab using **Oracle VirtualBox** w
 - 🔁 Resetting User Passwords  
 - 🗂️ Creating and Deleting Organizational Units  
 - ❌ Deleting and Disabling Users  
-- 🛡️ Creating and Linking GPOs (Group Policy Objects)
+- 🛡️ Creating and Linking GPOs (Group Policy Objects), e.g. password policies or desktop restrictions. 
 
 ---
 
